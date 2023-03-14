@@ -4,22 +4,23 @@ import pprint
 import keys
 import random
 
-url = "https://api.newscatcherapi.com/v2/search"
-
-querystring = {"q":"\"Elon Musk\"","lang":"en","sort_by":"relevancy","page":"1"}
-
-headers = {
-    "x-api-key": "PTEwAAdNgTVBTSJytLZu6yE1HknzVECA0QdaYxHr7zs"
-    }
-
-response = requests.request("GET", url, headers=headers, params=querystring)
-
-print(response.text)
+# 😳JESSICA'S CODE:
+# url = "https://api.newscatcherapi.com/v2/search"
+#
+# querystring = {"q":"\"Elon Musk\"","lang":"en","sort_by":"relevancy","page":"1"}
+#
+# headers = {
+#     "x-api-key": "PTEwAAdNgTVBTSJytLZu6yE1HknzVECA0QdaYxHr7zs"
+#     }
+#
+# response = requests.request("GET", url, headers=headers, params=querystring)
+#
+# print("JESSICA" + response.text)
 
 # AUSTIN
 # https://api.nytimes.com/svc/archive/v1/2019/1.json?api-key=XPTk3UQUOVyofZ6kfLYVtfn6pTv7HOTX
-#
-# import urllib.parse, urllib.request, urllib.error, json
+
+# # import urllib.parse, urllib.request, urllib.error, json
 # # import requests
 # import pprint
 # import keys
@@ -27,30 +28,48 @@ print(response.text)
 # from flask import Flask
 #
 #
-# def get_articles(year = 2000, month = 1):
-#     base_url = 'https://api.nytimes.com/svc/archive/v1/'
-#     url = (base_url + str(year) + "/" + str(month) + ".json?api-key=" + keys.api_key)
-#
-#     print(url)
-#
-#     try:
-#         x = urllib.request.urlopen(url)
-#         print("Success!!")
-#         return(json.loads(x.read()))
-#     except urllib.error.URLError as e:
-#         print('The server couldn\'t fulfill the request.')
-#         print(f'Error code: {e.code}')
+
+# https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=
+def get_articles(input, filter):
+    base_url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='
+    url = (base_url + str(input) + "&fq=" + str(filter) + "&api-key=" + keys.api_key)
+
+    print(url)
+    try:
+        x = urllib.request.urlopen(url)
+        print("Success!!")
+        data = json.loads(x.read())
+
+        # Choose how many articles we want to print
+        for article in data["response"]["docs"][0:1]:
+            return (article["web_url"])
+
+
+            # return (article["web_url"], article["abstract"])
+
+            # return("ARTICLE #" + str(article_count))
+            # print("SUMMARY 😎: " + article["abstract"])
+            # print("URL 🔗: " + article["web_url"] + "\n")
+
+
+        # return(json.loads(x.read()))
+    except urllib.error.URLError as e:
+        print('The server couldn\'t fulfill the request.')
+        print(f'Error code: {e.code}')
 #
 #
 # # response = requests.get(api)
 # # data = response.json()
 #
-#
-# data = get_articles(1999, 1)
-# articles = data["response"]["docs"]
-#
-# for article in data["response"]["docs"]:
-#     # print(article["headline"])
-#     print("SUMMARY 😎: " + article["abstract"])
-#     # print(article["web_url"])
-#     print("URL 🔗: " + article["web_url"] + "\n")
+get_articles("washington", "business")
+# data = get_articles("university")
+# # articles = data["response"]["docs"]
+# #
+# article_count = 1
+# for article in data["response"]["docs"][0:5]:
+#     # print(article["headline"])
+#     print("ARTICLE #" + str(article_count))
+#     article_count = article_count + 1
+#     print("SUMMARY 😎: " + article["abstract"])
+#     # print(article["web_url"])
+#     print("URL 🔗: " + article["web_url"] + "\n")

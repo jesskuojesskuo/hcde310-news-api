@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="https://api.newscatcherapi.com/v2/search" method="get">
+<!--<form action="https://api.newscatcherapi.com/v2/search" method="get">-->
+
+<!--<form action="https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" method="get">-->
+<form action="/search" method="get">
+
+
   <label for="search">Keyword search:</label>
   <input type="text" id="search" name="search">
-
-  <label for="date-start">Date range search:</label>
-  <input type="date" id="date-start" name="date-start">
-  <input type="date" id="date-end" name="date-end">
 
   <label for="category">Category search:</label>
   <select id="category" name="category">
@@ -18,17 +19,9 @@
     <option value="sports">Sports</option>
   </select>
 
-  <label for="source">Source search:</label>
-  <select id="source" name="source">
-    <option value="">--Select a source--</option>
-    <option value="Newscatcher">Newscatcher</option>
-    <option value="The New York Times">The New York Times</option>
-    <!-- Add other sources here -->
-  </select>
-
-  <label for="location">Location search:</label>
-  <input type="text" id="location" name="location">
-
   <input type="submit" value="Search">
 </form>
+
+<h1 class="header2">Search Results for "{{ result }}"</h1>
+
 {% endblock %}
