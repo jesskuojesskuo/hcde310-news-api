@@ -10,10 +10,6 @@ app = Flask(__name__)
 # Create a view function for /
 @app.route('/')
 def index():
-    # place = request.form['place']
-    # search = request.form['result']
-    # if search is empty, take the default input from the method, else use the search result.
-
     search = "test"
     return render_template('search.html', results = search)
 

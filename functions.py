@@ -47,7 +47,17 @@ def get_articles(input, filter):
             title = article["headline"]["main"]
             abstract = article["abstract"]
             date = article["pub_date"]
-            article_info = [output_url, title, abstract, date]
+            section = article["section_name"]
+
+            multimedia = article["multimedia"]
+            first_image_url = None
+            for media in multimedia:
+                if media["type"] == "image":
+                    first_image_url = "https://www.nytimes.com/" + media["url"]
+
+            # add category (section_name), subsection name, and image url
+
+            article_info = [output_url, title, abstract, date, section, first_image_url]
             return (article_info)
 
             # return (article["web_url"])
