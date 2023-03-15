@@ -39,10 +39,18 @@ def get_articles(input, filter):
         x = urllib.request.urlopen(url)
         print("Success!!")
         data = json.loads(x.read())
+        article_info = {}
 
         # Choose how many articles we want to print
         for article in data["response"]["docs"][0:1]:
-            return (article["web_url"])
+            output_url = article["web_url"]
+            title = article["headline"]["main"]
+            abstract = article["abstract"]
+            date = article["pub_date"]
+            article_info = [output_url, title, abstract, date]
+            return (article_info)
+
+            # return (article["web_url"])
 
 
             # return (article["web_url"], article["abstract"])
@@ -57,11 +65,18 @@ def get_articles(input, filter):
         print('The server couldn\'t fulfill the request.')
         print(f'Error code: {e.code}')
 #
-#
+
+# def get_
+
 # # response = requests.get(api)
 # # data = response.json()
-#
-get_articles("washington", "business")
+# #
+# get_articles("washington", "business")
+
+
+# def get_output(input):
+#     get_articles("washington", "business")
+
 # data = get_articles("university")
 # # articles = data["response"]["docs"]
 # #
