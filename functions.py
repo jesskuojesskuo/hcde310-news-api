@@ -30,9 +30,9 @@ import random
 #
 
 # https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=
-def get_articles(input, filter):
+def get_articles(input):
     base_url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='
-    url = (base_url + str(input) + "&fq=" + str(filter) + "&api-key=" + keys.api_key)
+    url = (base_url + str(input) + "&api-key=" + keys.api_key)
 
     print(url)
     try:
