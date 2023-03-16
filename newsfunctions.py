@@ -6,15 +6,13 @@ import keys
 import pprint
 import requests
 
-
-
-
-def extract_news_url(search,domain):
+def extract_news(search,domain):
    url = "https://newsapi.org/v2/everything"
 
 
    querystring = {"q": search, "domains": domain,
-                  "apiKey": keys.news_api_key}
+                  "apiKey": keys.news_api_key,
+                  "pageSize": 3}
    try:
        response = requests.request("GET", url, params=querystring)
        articles = response.json()['articles']
@@ -27,7 +25,8 @@ def extract_news_url(search,domain):
                "content": article["content"],
                "author": article["author"],
                "date": article["publishedAt"],
-               "link": article["url"]
+               "link": article["url"],
+       "imgurl": article["urlToImage"]
            }
            parsed_articles.append(article_info)
        return(parsed_articles)
@@ -37,5 +36,4 @@ def extract_news_url(search,domain):
        print('The server couldn\'t fulfill the request.')
        print(f'Error code: {e.code}')
 
-
-pprint.pprint(extract_news_url("finance","techcrunch.com"))
+pprint.pprint(extract_news("finance", "cnn.com"))

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/search" method="get">
+  <form action='{{url_for("results")}}' method="POST">
 
   <label for="domain">Choose a domain:</label><br>
   <select id="domain" name="domain">
@@ -24,6 +24,5 @@
   <input type="submit" value="Search">
 </form>
 
-<h1 class="header2">Search Results for "{{ search_topic }}" on {{ domain }}</h1>
 
 {% endblock %}
