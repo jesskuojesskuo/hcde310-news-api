@@ -1,6 +1,6 @@
 from functions import *
 from newsfunctions import *
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, render_template_string
 import json
 
 app = Flask(__name__)
@@ -11,9 +11,18 @@ def index():
 
 @app.route('/results', methods = ['GET', 'POST'])
 def results():
-    search = request.form['search_topic']
-    domain = request.form['domain']
-    nyt_articles = get_articles(search)
-    news_articles = extract_news(search, domain)
-    return render_template('nyt.html', nyt_articles=nyt_articles)
-    # return render_template('newscatcher.html', news_articles=news_articles)
+    if request.method == 'POST':
+        search = request.form['search_topic']
+        domain = request.form['domain']
+        nyt_articles = get_articles(search)
+        topic = nyt_articles['section'].split()[0]
+        news_articles = extract_news(topic, domain)
+
+        nyt_template = render_template('nyt.html', nyt_articles=nyt_articles)
+        newscatcher_template = render_template('newscatcher.html', news_articles=news_articles)
+
+        combined_template = nyt_template + newscatcher_template
+
+        return render_template_string(combined_template)
+    else:
+        return 'Wrong HTTP method', 400

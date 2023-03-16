@@ -3,7 +3,8 @@ import keys
 
 def get_articles(input):
     base_url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='
-    url = (base_url + str(input) + "&api-key=" + keys.api_key)
+    output_string = input.replace(" ", "-")
+    url = (base_url + str(output_string) + "&api-key=" + keys.api_key)
 
     try:
         x = urllib.request.urlopen(url)
