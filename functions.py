@@ -1,53 +1,19 @@
 import urllib.parse, urllib.request, urllib.error, json
-import requests
-import pprint
 import keys
-import random
-
-# 😳JESSICA'S CODE:
-# url = "https://api.newscatcherapi.com/v2/search"
-#
-# querystring = {"q":"\"Elon Musk\"","lang":"en","sort_by":"relevancy","page":"1"}
-#
-# headers = {
-#     "x-api-key": "PTEwAAdNgTVBTSJytLZu6yE1HknzVECA0QdaYxHr7zs"
-#     }
-#
-# response = requests.request("GET", url, headers=headers, params=querystring)
-#
-# print("JESSICA" + response.text)
-
-# AUSTIN
-# https://api.nytimes.com/svc/archive/v1/2019/1.json?api-key=XPTk3UQUOVyofZ6kfLYVtfn6pTv7HOTX
-
-# # import urllib.parse, urllib.request, urllib.error, json
-# # import requests
-# import pprint
-# import keys
-# import random
-# from flask import Flask
-#
-#
 
 # https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=
 def get_articles(input):
     base_url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='
     url = (base_url + str(input) + "&api-key=" + keys.api_key)
 
-    print(url)
     try:
         x = urllib.request.urlopen(url)
         print("Success!!")
         data = json.loads(x.read())
-        article_info = {}
+        parsed_articles = []
 
         # Choose how many articles we want to print
         for article in data["response"]["docs"][0:1]:
-            output_url = article["web_url"]
-            title = article["headline"]["main"]
-            abstract = article["abstract"]
-            date = article["pub_date"]
-            section = article["section_name"]
 
             multimedia = article["multimedia"]
             first_image_url = None
@@ -55,10 +21,39 @@ def get_articles(input):
                 if media["type"] == "image":
                     first_image_url = "https://www.nytimes.com/" + media["url"]
 
-            # add category (section_name), subsection name, and image url
+            article_info = {
+                "title": article["headline"]["main"],
+                "description": article["abstract"],
+                "section": article["section_name"],
+                # "source": article["source"]["name"],
+                # "content": article["content"],
+                "author": article["byline"]["original"],
+                "date": article["pub_date"],
+                "link": article["web_url"],
+                "imgurl": first_image_url
+                }
 
-            article_info = [output_url, title, abstract, date, section, first_image_url]
-            return (article_info)
+            print(article_info)
+            return article_info
+
+
+            #
+            # output_url = article["web_url"]
+            # title = article["headline"]["main"]
+            # abstract = article["abstract"]
+            # date = article["pub_date"]
+            # section = article["section_name"]
+            #
+            # multimedia = article["multimedia"]
+            # first_image_url = None
+            # for media in multimedia:
+            #     if media["type"] == "image":
+            #         first_image_url = "https://www.nytimes.com/" + media["url"]
+            #
+            # # add category (section_name), subsection name, and image url
+            #
+            # article_info = [output_url, title, abstract, date, section, first_image_url]
+            # return (article_info)
 
             # return (article["web_url"])
 
@@ -76,6 +71,8 @@ def get_articles(input):
         print(f'Error code: {e.code}')
 #
 
+
+print(get_articles("hi"))
 # def get_
 
 # # response = requests.get(api)

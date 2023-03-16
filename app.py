@@ -14,6 +14,8 @@ def results():
     # if request.method == 'POST':
     search = request.form['search_topic']
     domain = request.form['domain']
+    nyt_articles = get_articles(search)
     news_articles = extract_news(search, domain)
-    return render_template('newscatcher.html', news_articles=news_articles)
+    return render_template('nyt.html', nyt_articles=nyt_articles)
+    # return render_template('newscatcher.html', news_articles=news_articles)
 

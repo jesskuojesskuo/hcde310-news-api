@@ -1,17 +1,19 @@
+
+
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Search Results for topics about "{{ input }}"</h2>
-  <h3>Search Results for topics about "{{ result[0] }}"</h3>
-
-  {% if results|length == 0 %}
-    <p>No results were found for the search term "{{ search }}".</p>
-  {% else %}
-    <ul>
-      {% for result in results %}
-          <a href="{{ result.output_url }}" target="_blank">{{ result.title }}</a>
-          <p>{{ result.summary }}</p>
-      {% endfor %}
-    </ul>
-  {% endif %}
+  <h1>News Articles</h1>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ nyt_articles.imgurl }}" class="card-img-top" alt="Article Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ nyt_articles.title }}</h5>
+          <p class="card-text">{{ nyt_articles.description }}</p>
+          <p class="card-text"><small class="text-muted">By: {{ nyt_articles.author }}</small></p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
