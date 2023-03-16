@@ -1,27 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!--<form action="https://api.newscatcherapi.com/v2/search" method="get">-->
 
-<!--<form action="https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" method="get">-->
 <form action="/search" method="get">
 
+  <label for="domain">Choose a domain:</label><br>
+  <select id="domain" name="domain">
+    <option value="cnn.com">CNN</option>
+    <option value="bbc.co.uk">BBC</option>
+    <option value="foxnews.com">Fox News</option>
+    <option value="reuters.com">Reuters</option>
+    <option value="theguardian.com">The Guardian</option>
+    <option value="nytimes.com">The New York Times</option>
+    <option value="washingtonpost.com">The Washington Post</option>
+    <option value="aljazeera.com">Al Jazeera</option>
+    <option value="nbcnews.com">NBC News</option>
+    <option value="apnews.com">Associated Press (AP)</option>
+  </select><br>
 
-  <label for="search">Keyword search:</label>
-  <input type="text" id="search" name="search">
-
-  <label for="category">Category search:</label>
-  <select id="category" name="category">
-    <option value="">--Select a category--</option>
-    <option value="business">Business</option>
-    <option value="technology">Technology</option>
-    <option value="health">Health</option>
-    <option value="sports">Sports</option>
-  </select>
+  <label for="search_topic">Search topic:</label>
+  <input type="text" id="search_topic" name="search_topic">
 
   <input type="submit" value="Search">
 </form>
 
-<h1 class="header2">Search Results for "{{ result }}"</h1>
+<h1 class="header2">Search Results for "{{ search_topic }}" on {{ domain }}</h1>
 
 {% endblock %}
