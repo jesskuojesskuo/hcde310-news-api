@@ -1,4 +1,3 @@
-import urllib.parse
 import urllib.request
 import urllib.error
 import json
@@ -6,9 +5,9 @@ import keys
 import pprint
 import requests
 
+
 def extract_news(search,domain):
    url = "https://newsapi.org/v2/everything"
-
 
    querystring = {"q": search, "domains": domain,
                   "apiKey": keys.news_api_key,
@@ -26,7 +25,7 @@ def extract_news(search,domain):
                "author": article["author"],
                "date": article["publishedAt"],
                "link": article["url"],
-       "imgurl": article["urlToImage"]
+               "imgurl": article["urlToImage"]
            }
            parsed_articles.append(article_info)
        return(parsed_articles)
@@ -36,4 +35,3 @@ def extract_news(search,domain):
        print('The server couldn\'t fulfill the request.')
        print(f'Error code: {e.code}')
 
-pprint.pprint(extract_news("finance", "cnn.com"))
