@@ -12,7 +12,7 @@ def extract_news(search,domain):
 
    querystring = {"q": search, "domains": domain,
                   "apiKey": keys.news_api_key,
-                  "pageSize": 3}
+                  "pageSize": 4}
    try:
        response = requests.request("GET", url, params=querystring)
        articles = response.json()['articles']

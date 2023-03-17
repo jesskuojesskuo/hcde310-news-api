@@ -1,28 +1,37 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-  <form action='{{url_for("results")}}' method="POST">
+  <h1 class="page-heading">Search and Compare News Articles!</h1>
+  <h1 class="project-description">Jessica &amp; Austin's News Aggregator</h1>
+  <div class="wrapper">
+    <div class="bar"></div>
+  </div>
 
-  <label for="domain">Choose a domain:</label><br>
-  <select id="domain" name="domain">
-    <option value="cnn.com">CNN</option>
-    <option value="bbc.co.uk">BBC</option>
-    <option value="foxnews.com">Fox News</option>
-    <option value="reuters.com">Reuters</option>
-    <option value="nytimes.com">The New York Times</option>
-    <option value="washingtonpost.com">The Washington Post</option>
-    <option value="aljazeera.com">Al Jazeera</option>
-    <option value="nbcnews.com">NBC News</option>
-    <option value="apnews.com">Associated Press (AP)</option>
-    <option value="thetimes.co.uk">The Times (UK)</option>
-  </select><br>
+  <form action="{{url_for('results')}}" method="POST">
+    <div class="form-group">
+      <p class="search">What does </p>
+      <label for="domain"></label>
+      <select id="domain" name="domain">
+        <option value="cnn.com">CNN</option>
+        <option value="bbc.co.uk">BBC</option>
+        <option value="foxnews.com">Fox News</option>
+        <option value="reuters.com">Reuters</option>
+        <option value="nytimes.com">The New York Times</option>
+        <option value="washingtonpost.com">The Washington Post</option>
+        <option value="aljazeera.com">Al Jazeera</option>
+        <option value="nbcnews.com">NBC News</option>
+        <option value="apnews.com">Associated Press (AP)</option>
+        <option value="thetimes.co.uk">The Times (UK)</option>
+      </select>
+    </div>
 
-  <label for="search_topic">Search topic:</label>
-  <input type="text" id="search_topic" name="search_topic">
+    <div class="form-group">
+      <label for="search_topic">Search topic:</label>
+      <input type="text" id="search_topic" name="search_topic">
+    </div>
 
-  <input type="submit" value="Search">
-</form>
-
+    <input type="submit" value="Search">
+  </form>
 
 {% endblock %}
