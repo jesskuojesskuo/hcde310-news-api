@@ -18,13 +18,12 @@ def results():
        topic = nyt_articles['section'].split()[0].lower()
        news_articles = extract_news(topic, domain)
 
-
-       nyt_template = render_template('nyt.html', nyt_articles=nyt_articles)
+       nyt_template = render_template('nyt.html', nyt_articles=nyt_articles, search=search)
        newscatcher_template = render_template('newscatcher.html', news_articles=news_articles, domain=domain.upper(), topic=topic)
 
+       search_template = render_template('search.html', search_topic=search, domain=domain)
 
-       combined_template = nyt_template + newscatcher_template
-
+       combined_template = search_template + nyt_template + newscatcher_template
 
        return render_template_string(combined_template)
    else:

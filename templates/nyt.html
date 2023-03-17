@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
- <h1 class="news-title"> {{ nyt_articles.title }}</h1>
- <h3 class="card-text">{{ nyt_articles.author }}</h3>
+ <h1 class="page-heading">NYT on {{search}}.</h1>
+  <h1 class="project-description">This section shows the most relevant New York Times article on the {{search}} topic that was inputted by you (the user)!</h1>
+  <div class="wrapper">
+    <div class="bar"></div>
+  </div>
+
+ <h2 class="news-title"> {{ nyt_articles.title }}</h2>
+ <h3 class="card-text">{{ nyt_articles.author }} // Topic: {{ nyt_articles.section }}</h3>
  <div class="row">
    <div class="col-md-4 mb-4">
      <div class="card">
        <img src="{{ nyt_articles.imgurl }}" class="card-img-top" alt="Article Image">
        <div class="card-body">
          <h3 class="card-title my-custom-font">{{ nyt_articles.description }}</h3>
-         <p class="card-text">Topic: {{ nyt_articles.section }}</p>
          <a href="{{ nyt_articles.link }}" class="btn btn-primary">Read More</a>
        </div>
      </div>

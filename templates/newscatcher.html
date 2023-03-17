@@ -1,23 +1,30 @@
 {% extends "base.html" %}
 
-
 {% block content %}
- <h1>What does {{ domain }} have to say about {{ topic}}?</h1>
- <div class="container">
-   <div class="row">
-     {% for article in news_articles %}
-       <div class="col-md-4">
-         <div class="card">
-           <img src="{{ article.imgurl }}" class="card-img-top" alt="Article Image">
-           <div class="card-body">
-             <h5 class="card-title">{{ article.title }}</h5>
-             <p class="card-text">{{ article.description }}</p>
-             <p class="card-text"><small class="text-muted">By: {{ article.author }}</small></p>
-             <a href="{{ article.url }}" class="btn btn-primary">Read More</a>
+ <h1 class="page-heading">Related {{domain}} {{topic}} articles</h1>
+  <h1 class="project-description">This section shows articles from {{domain}} that are in the same category as the article from New York Times.
+  In this case, we are showing article in the {{topic}} section!</h1>
+  <div class="wrapper">
+    <div class="bar"></div>
+  </div>
+
+  <div class="container">
+          {% for article in news_articles %}
+          <h2 class="news-title"> {{ article.title }}</h2>
+         <h3 class="card-text">By: {{ article.author }}</h3>
+         <div class="row">
+           <div class="col-md-4 mb-4">
+             <div class="card">
+               <img src="{{ article.imgurl }}" class="card-img-top" alt="Article Image">
+               <div class="card-body">
+                 <h3 class="card-title my-custom-font">{{ article.description }}</h3>
+                 <a href="{{ article.link }}" class="btn btn-primary">Read More</a>
+               </div>
+             </div>
            </div>
          </div>
-       </div>
-     {% endfor %}
-   </div>
- </div>
+      {% endfor %}
+    </div>
+  </div>
+
 {% endblock %}

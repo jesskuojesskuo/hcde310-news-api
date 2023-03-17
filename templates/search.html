@@ -3,34 +3,32 @@
 {% block content %}
 
   <h1 class="page-heading">Search and Compare News Articles!</h1>
-  <h1 class="project-description">Jessica &amp; Austin's News Aggregator</h1>
+  <h1 class="project-description">Search keywords, and based on the most relevant NYT article's topic, find relevant news articles from your choice of source!</h1>
   <div class="wrapper">
     <div class="bar"></div>
   </div>
 
 <form action="{{url_for('results')}}" method="POST">
   <div class="form-group">
-    <label for="domain">What does</label>
+    <label for="search_topic">What does NYT say about:</label>
+    <input type="text" id="search_topic" name="search_topic">
+  </div>
+
+  <div class="form-group">
+    <label for="domain">Show related articles from: </label>
     <select id="domain" name="domain">
       <option value="cnn.com">CNN</option>
       <option value="bbc.co.uk">BBC</option>
       <option value="foxnews.com">Fox News</option>
-      <option value="reuters.com">Reuters</option>
-      <option value="nytimes.com">The New York Times</option>
-      <option value="washingtonpost.com">The Washington Post</option>
-      <option value="aljazeera.com">Al Jazeera</option>
-      <option value="nbcnews.com">NBC News</option>
       <option value="apnews.com">Associated Press (AP)</option>
-      <option value="thetimes.co.uk">The Times (UK)</option>
+      <option value="theguardian.com">The Guardian</option>
+      <option value="abcnews.go.com">ABC News</option>
+      <option value="usatoday.com">USA Today</option>
+      <option value="huffpost.com">HuffPost</option>
+      <option value="msnbc.com">MSNBC</option>
     </select>
-  </div>
-
-  <div class="form-group">
-    <label for="search_topic">have to say about</label>
-    <input type="text" id="search_topic" name="search_topic">
   </div>
 
   <input type="submit" value="Search">
 </form>
-
 {% endblock %}
