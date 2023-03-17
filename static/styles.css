@@ -1,0 +1,66 @@
+body {
+  background-color: #f9f6ef;
+  color: #2c2d32;
+  font-family: "libre Baskerville";
+  margin-right: 10em;
+  margin-left: 10em;
+}
+.project-description {
+  font-size: 2em;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0px;
+  color: #6b7266;
+}
+
+.page-heading {
+  color: #333;
+  font-size: 4em;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  padding: 0 200px;
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  margin-top: 20px;
+}
+
+.search {
+  font-family: Arial, sans-serif;
+  color: #555;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card-img-top {
+ width: 100%;
+ height: 40em;
+ object-fit: cover;
+ border-radius: 10px;
+}
+.news-title {
+ font-style: italic;
+ font-size: 50px
+}
+
+.btn-primary {
+ text-decoration: None;
+ background-color: black;
+ color: white;
+ border-radius: 10px;
+ padding-left: 2em;
+ padding-right: 2em;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+ margin-top: 3em;
+ margin-bottom: 1em;
+}
+
