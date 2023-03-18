@@ -1,2 +1,5 @@
-api_key = 'XPTk3UQUOVyofZ6kfLYVtfn6pTv7HOTX'
-news_api_key = "67f526529da14d65a11480337b741a01"
+#New York Times API Key:
+api_key = ''
+
+#NewsAPI Key:
+news_api_key = ''
